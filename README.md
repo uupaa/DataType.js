@@ -1,0 +1,4 @@
+DataType.js
+===========
+
+DataType utility
