@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.datatype.js",
-  "version":        "0.0.1",
+  "version":        "0.0.2",
   "description":    "Module template for Mobile Web Application.",
   "url":            "https://github.com/uupaa/DataType.js",
   "keywords":       ["type", "convert", "unit", "binary", "WebModule", "uupaa", "Unstable"],
