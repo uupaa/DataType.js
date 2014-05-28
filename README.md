@@ -4,7 +4,7 @@ DataType.js
 
 ![](https://travis-ci.org/uupaa/DataType.js.png)
 
-DataType.js description.
+DataType conversion.
 
 # Document
 
@@ -20,7 +20,7 @@ DataType.js description.
 ```js
 <script src="lib/DataType.js">
 <script>
-console.log( DataType["Object"].clone({ a: 1 }) );
+console.log( DataType.Object.clone({ a: 1 }) );
 </script>
 ```
 
@@ -29,7 +29,7 @@ console.log( DataType["Object"].clone({ a: 1 }) );
 ```js
 importScripts("lib/DataType.js");
 
-console.log( DataType["Object"].clone({ a: 1 }) );
+console.log( DataType.Object.clone({ a: 1 }) );
 ```
 
 ## Node.js
@@ -37,6 +37,6 @@ console.log( DataType["Object"].clone({ a: 1 }) );
 ```js
 var DataType = require("lib/DataType.js");
 
-console.log( DataType["Object"].clone({ a: 1 }) );
+console.log( DataType.Object.clone({ a: 1 }) );
 ```
 
