@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.datatype.js",
-  "version":        "0.0.4",
+  "version":        "0.0.5",
   "description":    "DataType conversion.",
   "url":            "https://github.com/uupaa/DataType.js",
   "keywords":       ["type", "convert", "unit", "binary", "WebModule", "uupaa", "Unstable"],
@@ -21,7 +21,7 @@
     "lint":         "node node_modules/uupaa.plato.js; open lint/plato/index.html"
   },
   "x-build": {
-    "files":        ["lib/DataType.js"],
+    "source":       ["lib/DataType.js"],
     "output":       "release/DataType.min.js",
     "target":       ["all"],
     "labels":       ["@dev"],
