@@ -28,6 +28,8 @@ var test = new Test("DataType", {
         testObjectCloneObject,
         testObjectCloneSparseArray,
         testObjectCloneError,
+        // --- Uint8Array ---
+        testUint8ArrayFromString,
     ]);
 
 if (typeof document !== "undefined") { // for Browser
@@ -337,7 +339,18 @@ function testObjectCloneCSSStyleDeclaration(next) {
     next && next.miss();
 }
 
+function testUint8ArrayFromString(test, pass, miss) {
 
+    var source = "#$%&";
+    var uint8array = DataType["Uint8Array"]["fromString"](source);
+    var result = DataType["Array"]["toString"](uint8array);
+
+    if (source === result) {
+        test.done(pass());
+    } else {
+        test.done(miss());
+    }
+}
 
 
 })((this || 0).self || global);
