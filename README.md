@@ -1,19 +1,17 @@
-=========
-DataType.js
-=========
+# DataType.js [![Build Status](https://travis-ci.org/uupaa/DataType.js.png)](http://travis-ci.org/uupaa/DataType.js)
 
-![](https://travis-ci.org/uupaa/DataType.js.png)
+[![npm](https://nodei.co/npm/uupaa.datatype.js.png?downloads=true&stars=true)](https://nodei.co/npm/uupaa.datatype.js/)
 
 DataType conversion.
 
-# Document
+## Document
 
 - [DataType.js wiki](https://github.com/uupaa/DataType.js/wiki/DataType)
 - [Development](https://github.com/uupaa/WebModule/wiki/Development)
 - [WebModule](https://github.com/uupaa/WebModule) ([Slide](http://uupaa.github.io/Slide/slide/WebModule/index.html))
 
 
-# How to use
+## How to use
 
 ## Browser
 

@@ -1,9 +1,9 @@
 {
   "name":           "uupaa.datatype.js",
-  "version":        "0.0.6",
+  "version":        "0.0.7",
   "description":    "DataType conversion.",
   "url":            "https://github.com/uupaa/DataType.js",
-  "keywords":       ["type", "convert", "unit", "binary", "WebModule", "uupaa", "Unstable"],
+  "keywords":       ["type", "convert", "unit", "binary", "uupaa", "WebModule", "Unstable"],
   "repository": {
     "type":         "git",
     "url":          "https://github.com/uupaa/DataType.js.git"
@@ -22,6 +22,7 @@
     "server":       "http-server -c-1 -p 8585 &",
     "server-stop":  "",
     "server-kill":  "killall -- node /usr/local/bin/http-server -p 8585 ; exit 0",
+    "hint":         "jshint lib/*.js",
     "lint":         "node node_modules/uupaa.plato.js; open lint/plato/index.html"
   },
   "x-build": {
