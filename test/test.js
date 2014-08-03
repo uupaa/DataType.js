@@ -12,7 +12,7 @@ var test = new Test("DataType", {
         button:     true,
         both:       true, // test the primary module and secondary module
     }).add([
-        testArrayUnit,
+//      testArrayUnit,
         testArrayClampValue,
         testToHexString,
         testToHexEncode,
@@ -29,6 +29,10 @@ var test = new Test("DataType", {
         testObjectCloneSparseArray,
         testObjectCloneError,
         // --- Uint8Array ---
+        testUint8ArrayClone,
+        testUint8ArrayCloneWithBeginOffset,
+        testUint8ArrayCloneWithBeginAndEndOffset,
+        testUint8ArrayToArray,
         testUint8ArrayFromString,
     ]);
 
@@ -44,7 +48,7 @@ return test.run().clone();
 
 
 
-function testArrayUnit(next) {
+function testArrayUnit(test, pass, miss) {
 
     var source1byte = [      0x6f,       0x89,       0x78,       0x11];
     var source2byte = [    0x306f,     0x3089,     0x3078,     0xff11];
@@ -77,50 +81,50 @@ function testArrayUnit(next) {
     });
 
    if (ok) {
-        next && next.pass();
+        test.done(pass());
     } else {
-        next && next.miss();
+        test.done(miss());
     }
 }
 
-function testArrayClampValue(next) {
+function testArrayClampValue(test, pass, miss) {
 
     var source = [0x12, 0x123, 0x1234, 0x12345];
     var byteArray = DataType["Array"].clampValue(source);
     var result = [0x12,  0xff,   0xff,    0xff];
 
     if (result.join(",") === byteArray.join(",")) {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testToHexString(next) {
+function testToHexString(test, pass, miss) {
 
     var source = [0x306f, 0x3089, 0x103078];
     var result = DataType["Array"].toHexStringArray(source);
 
     if (result.join("") === "6f8978") {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testToHexEncode(next) {
+function testToHexEncode(test, pass, miss) {
 
     var source = [0x00, 0x41, 0x53, 0x43, 0x49, 0x49, 0xff];
     var result = DataType["Array"].toHexStringArray(source, true);
 
     if (result.join("") === "%00ASCII%ff") {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testFromString(next) {
+function testFromString(test, pass, miss) {
 
     var source = String.fromCharCode.apply(null, [0x306f, 0x3089, 0x3078]);
     var byteArray = DataType["Array"].fromString(source);
@@ -129,26 +133,26 @@ function testFromString(next) {
         byteArray[1] === 0x89 &&
         byteArray[2] === 0x78) {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testToString(next) {
+function testToString(test, pass, miss) {
 
     var source = [0x20, 0x21, 0x22, 0x23];
     var result = DataType["Array"].toString(source);
 
     if (result === "\u0020\u0021\u0022\u0023") {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
 // --- TypedArray ---
-function testClampTypedArray(next) {
+function testClampTypedArray(test, pass, miss) {
 
     var source    = new Uint16Array([0x12, 0x123, 0x1234, 0x12345]);
     var byteArray = DataType["Array"].clampValue(source);
@@ -156,65 +160,65 @@ function testClampTypedArray(next) {
 
     if (Array.prototype.slice.call(result).join(",") ===
         Array.prototype.slice.call(byteArray).join(",")) {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testToHexStringTypedArray(next) {
+function testToHexStringTypedArray(test, pass, miss) {
 
     var source = new Uint8Array([0x306f, 0x3089, 0x103078]);
     var result = DataType["Array"].toHexStringArray(source);
 
     if (result.join("") === "6f8978") {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testToHexEncodeTypedArray(next) {
+function testToHexEncodeTypedArray(test, pass, miss) {
 
     var source = new Uint8Array([0x00, 0x41, 0x53, 0x43, 0x49, 0x49, 0xff]);
     var result = DataType["Array"].toHexStringArray(source, true);
 
     if (result.join("") === "%00ASCII%ff") {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
 
-function testToStringTypedArray(next) {
+function testToStringTypedArray(test, pass, miss) {
 
     var source = new Uint8Array([0x20, 0x21, 0x22, 0x23]);
     var result = DataType["Array"].toString(source);
 
     if (result === "\u0020\u0021\u0022\u0023") {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
 
 
-function testObjectCloneLiteral(next) {
+function testObjectCloneLiteral(test, pass, miss) {
 
     if (DataType["Object"].clone(1)        === 1       &&
         DataType["Object"].clone(null)     === null    &&
         DataType["Object"].clone("a")      === "a"     &&
         DataType["Object"].clone(false)    === false) {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testObjectCloneObject(next) {
+function testObjectCloneObject(test, pass, miss) {
     var object = {
             key: "value",
             child: {
@@ -232,13 +236,13 @@ function testObjectCloneObject(next) {
         DataType["Object"].clone(array).join(",") === "1,2,3" &&
         DataType["Object"].clone(error).message === "hello") {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testObjectCloneSparseArray(next) {
+function testObjectCloneSparseArray(test, pass, miss) {
     var sparseArray = [0, 1, 2, 3];
 
     delete sparseArray[1]; // [0, undefined, 2, 3];
@@ -252,14 +256,14 @@ function testObjectCloneSparseArray(next) {
         sparseArray[2] === clonedArray[2] &&
         sparseArray[3] === clonedArray[3]) {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
 
-function testObjectCloneError(next) {
+function testObjectCloneError(test, pass, miss) {
     var result = {
             1: DataType["Object"].clone(new Error("1")),
             2: DataType["Object"].clone(new TypeError("2")),
@@ -268,14 +272,14 @@ function testObjectCloneError(next) {
     if (result[1].message === "1" &&
         result[2].message === "2") {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
 
-function testObjectCloneNode(next) {
+function testObjectCloneNode(test, pass, miss) {
     var node1 = document.createElement("div");
     var node2 = document.createElement("div");
     var textNode = document.createTextNode("hello");
@@ -290,13 +294,13 @@ function testObjectCloneNode(next) {
         clonedNodeTree.children[0].nodeName === "DIV" &&
         treeImage === "<div><div>hello</div></div>") {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testObjectCloneNamedNodeMap(next) {
+function testObjectCloneNamedNodeMap(test, pass, miss) {
     var node = document.createElement("div");
 
     node.setAttribute("id", "id123");
@@ -307,13 +311,13 @@ function testObjectCloneNamedNodeMap(next) {
     if (node.getAttribute("id") === attr["id"] &&
         node.getAttribute("class") === attr["class"]) {
 
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
 }
 
-function testObjectCloneCSSStyleDeclaration(next) {
+function testObjectCloneCSSStyleDeclaration(test, pass, miss) {
     var result = true;
     var style = window.getComputedStyle(document.body);
     var clonedStyle = DataType["Object"].clone(style);
@@ -333,10 +337,66 @@ function testObjectCloneCSSStyleDeclaration(next) {
         break;
     }
     if (result) {
-        next && next.pass();
+        test.done(pass());
         return;
     }
-    next && next.miss();
+    test.done(miss());
+}
+
+function testUint8ArrayClone(test, pass, miss) {
+    var source = [0,1,2,3,4,5,6,7,8,9];
+    var uint8Array = new Uint8Array(source);
+    var clonedArray = DataType["Uint8Array"]["clone"](uint8Array); // cloned = [0,..9]
+    var result = DataType["Uint8Array"]["toArray"](clonedArray);
+
+    if (source.join() === result.join()) { // [0,...9]
+
+        // clonedArray has not reference.
+        uint8Array[0] = 0xff;
+
+        if (uint8Array[0] === 0xff && clonedArray[0] === 0) {
+            test.done(pass());
+            return;
+        }
+    }
+    test.done(miss());
+}
+
+function testUint8ArrayCloneWithBeginOffset(test, pass, miss) {
+    var source = [0,1,2,3,4,5,6,7,8,9];
+    var uint8Array = new Uint8Array(source);
+    var clonedArray = DataType["Uint8Array"]["clone"](uint8Array, 2); // cloned = [2,..9]
+    var result = DataType["Uint8Array"]["toArray"](clonedArray);
+
+    if (source.slice(2).join() === result.join()) { // [2,...9]
+        test.done(pass());
+    } else {
+        test.done(miss());
+    }
+}
+
+function testUint8ArrayCloneWithBeginAndEndOffset(test, pass, miss) {
+    var source = [0,1,2,3,4,5,6,7,8,9];
+    var uint8Array = new Uint8Array(source);
+    var clonedArray = DataType["Uint8Array"]["clone"](uint8Array, 2, 6); // cloned = [2,3,4,5]
+    var result = DataType["Uint8Array"]["toArray"](clonedArray);
+
+    if (source.slice(2, 6).join() === result.join()) { // [2,3,4,5]
+        test.done(pass());
+    } else {
+        test.done(miss());
+    }
+}
+
+function testUint8ArrayToArray(test, pass, miss) {
+    var source = [0,1,2,3,4,5,6,7,8,9];
+    var result = DataType["Uint8Array"]["toArray"](new Uint8Array(source));
+
+    if (source.join() === result.join()) {
+        test.done(pass());
+    } else {
+        test.done(miss());
+    }
 }
 
 function testUint8ArrayFromString(test, pass, miss) {

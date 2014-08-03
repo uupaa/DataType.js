@@ -13,7 +13,7 @@ DataType conversion.
 
 ## How to use
 
-## Browser
+### Browser
 
 ```js
 <script src="lib/DataType.js">
@@ -22,7 +22,7 @@ console.log( DataType.Object.clone({ a: 1 }) );
 </script>
 ```
 
-## WebWorkers
+### WebWorkers
 
 ```js
 importScripts("lib/DataType.js");
@@ -30,7 +30,7 @@ importScripts("lib/DataType.js");
 console.log( DataType.Object.clone({ a: 1 }) );
 ```
 
-## Node.js
+### Node.js
 
 ```js
 var DataType = require("lib/DataType.js");
