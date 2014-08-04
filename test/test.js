@@ -29,6 +29,7 @@ var test = new Test("DataType", {
         testObjectCloneSparseArray,
         testObjectCloneError,
         // --- Uint8Array ---
+        testUint8ArrayConcat,
         testUint8ArrayClone,
         testUint8ArrayCloneWithBeginOffset,
         testUint8ArrayCloneWithBeginAndEndOffset,
@@ -341,6 +342,21 @@ function testObjectCloneCSSStyleDeclaration(test, pass, miss) {
         return;
     }
     test.done(miss());
+}
+
+function testUint8ArrayConcat(test, pass, miss) {
+
+    var value1 = [0,1,2];
+    var value2 = [3,4,5];
+    var value3 = [6,7,8];
+    var resultUint8Array = DataType["Uint8Array"]["concat"](value1, value2, value3); // [0,1,2,3,4,5,6,7,8]
+    var result = DataType["Uint8Array"]["toArray"](resultUint8Array);
+
+    if (result.join() === [0,1,2,3,4,5,6,7,8].join()) {
+        test.done(pass());
+    } else {
+        test.done(miss());
+    }
 }
 
 function testUint8ArrayClone(test, pass, miss) {
