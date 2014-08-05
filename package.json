@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.datatype.js",
-  "version":        "0.0.9",
+  "version":        "0.0.10",
   "description":    "DataType conversion.",
   "url":            "https://github.com/uupaa/DataType.js",
   "keywords":       ["type", "convert", "unit", "binary", "uupaa", "WebModule", "Unstable"],

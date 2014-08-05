@@ -28,6 +28,7 @@ var test = new Test("DataType", {
         testObjectCloneObject,
         testObjectCloneSparseArray,
         testObjectCloneError,
+        testObjectCloneTypedArray,
         // --- Uint8Array ---
         testUint8ArrayConcat,
         testUint8ArrayClone,
@@ -279,6 +280,19 @@ function testObjectCloneError(test, pass, miss) {
     test.done(miss());
 }
 
+function testObjectCloneTypedArray(test, pass, miss) {
+    var source1 = DataType.object.clone( new Uint8Array([1,2,3]) );
+    var source2 = DataType.object.clone( new Float32Array([1.1,2.2,3.3]) );
+
+    if ( Array.prototype.slice.call(source1).join() === [1,2,3].join() &&
+         source2[0].toFixed(1) === "1.1" &&
+         source2[1].toFixed(1) === "2.2" &&
+         source2[2].toFixed(1) === "3.3") {
+        test.done(pass());
+    } else {
+        test.done(miss());
+    }
+}
 
 function testObjectCloneNode(test, pass, miss) {
     var node1 = document.createElement("div");
