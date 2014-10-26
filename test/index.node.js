@@ -6,5 +6,8 @@ require("../node_modules/uupaa.valid.js/lib/Valid.js");
 require("../node_modules/uupaa.task.js/lib/Task.js");
 require("../node_modules/uupaa.test.js/lib/Test.js");
 require("../lib/DataType.js");
+require("../lib/Array.js");
+require("../lib/Uint8Array.js");
+require("../lib/Object.js");
 require("../release/DataType.min.js");
 require("./test.js");

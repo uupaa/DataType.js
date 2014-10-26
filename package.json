@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.datatype.js",
-  "version":        "0.0.10",
+  "version":        "0.1.0",
   "description":    "DataType conversion.",
   "url":            "https://github.com/uupaa/DataType.js",
   "keywords":       ["type", "convert", "unit", "binary", "uupaa", "WebModule", "Unstable"],
@@ -9,6 +9,7 @@
     "url":          "https://github.com/uupaa/DataType.js.git"
   },
   "scripts": {
+    "init":         "npm update; npm run build; npm run test-page",
     "watch":        "node node_modules/uupaa.watch.js --verbose --action build",
     "build":        "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty",
     "build-simple": "node node_modules/uupaa.minify.js --verbose --strict --keep --pretty --nowrap --simple",
@@ -23,13 +24,17 @@
     "server-stop":  "",
     "server-kill":  "killall -- node /usr/local/bin/http-server -p 8585 ; exit 0",
     "hint":         "jshint lib/*.js",
-    "lint":         "node node_modules/uupaa.plato.js; open lint/plato/index.html"
+    "lint":         "npm run coverage",
+    "coverage":     "node node_modules/uupaa.plato.js; open lint/plato/index.html"
   },
   "x-build": {
-    "source":       ["lib/DataType.js"],
+    "source":       ["lib/DataType.js",
+                     "lib/Array.js",
+                     "lib/Uint8Array.js",
+                     "lib/Object.js"],
     "output":       "release/DataType.min.js",
     "target":       ["all"],
-    "labels":       ["@dev"],
+    "label":        ["@dev"],
     "module": {
       "develop":    ["uupaa.valid.js"],
       "release":    []
